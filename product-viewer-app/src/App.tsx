@@ -1,11 +1,13 @@
-import './App.css';
-import HomePage from './pages/HomePage';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import HomePage from "./pages/HomePage";
+import theme from "./theme";
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <HomePage />
-    </div>
+    </ThemeProvider>
   );
 }
 

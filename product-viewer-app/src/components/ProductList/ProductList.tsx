@@ -1,8 +1,8 @@
 import React, { useRef, useCallback } from "react";
-import useProducts from "../../hooks/useProducts";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import ProductCard from "../ProductCard/ProductCard";
 import { Product } from "../../types/Product";
+import useProducts from "../../hooks/useProducts";
 
 const ProductList: React.FC = () => {
   const { products, error, loadMore, hasMore } = useProducts(20);
@@ -22,34 +22,36 @@ const ProductList: React.FC = () => {
   );
 
   return (
-    <div>
-      {error && <Typography role="alert">{error}</Typography>}
-      <Grid container spacing={2} justifyContent="center">
+    <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+      {error && (
+        <Typography role="alert" color="error">
+          {error}
+        </Typography>
+      )}
+      <Grid
+        container
+        spacing={4}
+        justifyContent="center"
+        sx={{ maxWidth: "100%" }}
+      >
         {products.map((product: Product, index: number) => {
           const uniqueKey = `${product.id}-${index}`;
-          if (products.length === index + 1) {
-            return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                key={uniqueKey}
-                ref={lastProductElementRef}
-              >
-                <ProductCard product={product} />
-              </Grid>
-            );
-          } else {
-            return (
-              <Grid item xs={12} sm={6} md={4} key={uniqueKey}>
-                <ProductCard product={product} />
-              </Grid>
-            );
-          }
+          return (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              key={uniqueKey}
+              ref={products.length === index + 1 ? lastProductElementRef : null}
+            >
+              <ProductCard product={product} />
+            </Grid>
+          );
         })}
       </Grid>
-    </div>
+    </Box>
   );
 };
 

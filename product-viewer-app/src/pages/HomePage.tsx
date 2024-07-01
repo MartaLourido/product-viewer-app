@@ -1,21 +1,17 @@
-import React from 'react';
-import { Container, Grid, Typography } from '@mui/material';
-import ProductList from '../components/ProductList/ProductList';
+import React from "react";
+import { Container, Typography } from "@mui/material";
+import ProductList from "../components/ProductList/ProductList";
 
 const HomePage: React.FC = () => {
   return (
-    <Container>
-      <Typography variant="h1" gutterBottom>
+    <Container
+      maxWidth={false}
+      sx={{ py: 4, px: { xs: 2, sm: 3, md: 5 }, maxWidth: "100%" }}
+    >
+      <Typography variant="h1" gutterBottom align="center">
         Product Viewer App
       </Typography>
-      <Grid container spacing={3} justifyContent="center">
-        <Grid item xs={12}>
-          {/* <SearchBar /> */}
-        </Grid>
-        <Grid item xs={12}>
-          <ProductList />
-        </Grid>
-      </Grid>
+      <ProductList />
     </Container>
   );
 };

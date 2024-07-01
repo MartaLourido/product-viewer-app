@@ -1,57 +1,85 @@
 import React from "react";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import CardOverflow from "@mui/joy/CardOverflow";
-import Chip from "@mui/joy/Chip";
-import Link from "@mui/joy/Link";
-import Typography from "@mui/joy/Typography";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { Card, CardContent, Typography, Box, Chip } from "@mui/material";
 import { Product } from "../../types/Product";
 
 interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  return (
-    <Card sx={{ width: 320, maxWidth: "100%", boxShadow: "lg", marginBottom: 2 }}>
-      <CardOverflow>
-        <AspectRatio sx={{ minWidth: 200 }}>
-          <img
-            src={product.thumbnail}
-            srcSet={`${product.thumbnail} 2x`}
-            loading="lazy"
-            alt={product.title}
-          />
-        </AspectRatio>
-      </CardOverflow>
-      <CardContent>
-        <Typography level="body-xs">{product.category}</Typography>
-        <Link
-          href="#product-card"
-          fontWeight="md"
-          color="neutral"
-          textColor="text.primary"
-          overlay
-          endDecorator={<ArrowOutwardIcon />}
-        >
-          {product.title}
-        </Link>
+const categoryColors: { [key: string]: any } = {
+  smartphones: "primary",
+  laptops: "secondary",
+  fragrances: "error",
+  skincare: "warning",
+  groceries: "info",
+  homeDecoration: "success",
+  furniture: "customYellow",
+  tops: "customPurple",
+  womensDresses: "customOrange",
+  womensShoes: "customPink",
+  mensShirts: "primary",
+  mensShoes: "secondary",
+  mensWatches: "error",
+  womensWatches: "warning",
+  womensBags: "info",
+  womensJewellery: "success",
+  sunglasses: "customYellow",
+  automotive: "customPurple",
+  motorcycle: "customOrange",
+  lighting: "customPink",
+};
 
-        <Typography
-          level="title-lg"
-          sx={{ mt: 1, fontWeight: "xl" }}
-          endDecorator={
-            <Chip component="span" size="sm" variant="soft" color="success">
-              Best Price
-            </Chip>
-          }
-        >
-          {product.price} EUR
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const color = categoryColors[product.category];
+
+  return (
+    <Card
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        borderRadius: 2,
+        boxShadow: 3,
+      }}
+    >
+      <Box
+        component="img"
+        sx={{ height: 200, objectFit: "cover" }}
+        src={product.thumbnail}
+        alt={product.title}
+      />
+      <CardContent>
+        <Chip
+          label={product.category}
+          color={color ? color : "default"}
+          sx={{ mb: 2 }}
+        />
+        <Typography variant="h6" sx={{ mb: 1 }}>
+          {product.title}
         </Typography>
-        <Typography level="body-sm">{product.description}</Typography>
-        <Typography level="body-sm">{product.brand}</Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          {product.description}
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h6">{product.price} USD</Typography>
+          <Typography
+            variant="caption"
+            color="success.main"
+            sx={{ fontWeight: "bold" }}
+          >
+            Best Price
+          </Typography>
+        </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          {product.brand}
+        </Typography>
       </CardContent>
     </Card>
   );
