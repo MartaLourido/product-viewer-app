@@ -1,7 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import useProducts from "../../hooks/useProducts";
 import { Grid, Typography } from "@mui/material";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductCard from "../ProductCard/ProductCard";
 import { Product } from "../../types/Product";
 
 const ProductList: React.FC = () => {
@@ -23,9 +23,8 @@ const ProductList: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h1">Product List</Typography>
       {error && <Typography role="alert">{error}</Typography>}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         {products.map((product: Product, index: number) => {
           const uniqueKey = `${product.id}-${index}`;
           if (products.length === index + 1) {
@@ -38,13 +37,13 @@ const ProductList: React.FC = () => {
                 key={uniqueKey}
                 ref={lastProductElementRef}
               >
-                <ProductItem product={product} />
+                <ProductCard product={product} />
               </Grid>
             );
           } else {
             return (
               <Grid item xs={12} sm={6} md={4} key={uniqueKey}>
-                <ProductItem product={product} />
+                <ProductCard product={product} />
               </Grid>
             );
           }
