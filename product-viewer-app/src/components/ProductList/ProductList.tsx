@@ -1,12 +1,15 @@
 import React, { useRef, useCallback } from "react";
 import useProducts from "../../hooks/useProducts";
+import { Grid, Typography } from "@mui/material";
+import ProductItem from "../ProductItem/ProductItem";
+import { Product } from "../../types/Product";
 
 const ProductList: React.FC = () => {
   const { products, error, loadMore, hasMore } = useProducts(20);
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastProductElementRef = useCallback(
-    (node: HTMLLIElement | null) => {
+    (node: HTMLDivElement | null) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
@@ -20,36 +23,33 @@ const ProductList: React.FC = () => {
 
   return (
     <div>
-      <h1>Product List</h1>
-      {error && <div role="alert">{error}</div>}
-      <ul>
-        {products.map((product, index) => {
+      <Typography variant="h1">Product List</Typography>
+      {error && <Typography role="alert">{error}</Typography>}
+      <Grid container spacing={2}>
+        {products.map((product: Product, index: number) => {
           const uniqueKey = `${product.id}-${index}`;
           if (products.length === index + 1) {
             return (
-              <li ref={lastProductElementRef} key={uniqueKey}>
-                <img src={product.thumbnail} alt={product.title} />
-                <h2>{product.title}</h2>
-                <p>{product.price}</p>
-                <p>{product.description}</p>
-                <p>{product.brand}</p>
-                <p>{product.category}</p>
-              </li>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={uniqueKey}
+                ref={lastProductElementRef}
+              >
+                <ProductItem product={product} />
+              </Grid>
             );
           } else {
             return (
-              <li key={uniqueKey}>
-                <img src={product.thumbnail} alt={product.title} />
-                <h2>{product.title}</h2>
-                <p>{product.price}</p>
-                <p>{product.description}</p>
-                <p>{product.brand}</p>
-                <p>{product.category}</p>
-              </li>
+              <Grid item xs={12} sm={6} md={4} key={uniqueKey}>
+                <ProductItem product={product} />
+              </Grid>
             );
           }
         })}
-      </ul>
+      </Grid>
     </div>
   );
 };
