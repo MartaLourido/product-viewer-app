@@ -23,10 +23,6 @@ Product Viewer App is a React-based application that displays a list of products
 - **Loading and Empty States**: Loading state and empty state are added for better user experience, especially when the internet is slow or there is no data available.
 - **Input Validation**: The search input is considered "free", meaning it admits any characters since there are no specific validation requirements mentioned. This assumes the user can search by any keyword.
 
-### Folder Structure
-
-Usually, I use atomic design for folder structure when the project has a several reusable components. However, for this case, I didn’t follow this approach because it is a small project.
-
 ## Installation
 
 1. Clone the repository:
@@ -91,6 +87,14 @@ Unit tests are written using Jest and React Testing Library. Tests are written t
 ## Performance
 
 The application is optimized for performance, with lazy loading of products and chunked requests to minimize the load time and enhance the user experience.
+
+## Folder Structure
+
+Usually, I use atomic design for folder structure when the project has several reusable components. However, for this case, I didn’t follow this approach because it is a small project.
+
+## Future Improvements
+
+- **Global State Management**: If the project scales, we could consider integrating a global state management solution like Redux.
 
 ## Links
 
