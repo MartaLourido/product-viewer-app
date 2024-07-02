@@ -23,6 +23,10 @@ Product Viewer App is a React-based application that displays a list of products
 - **Loading and Empty States**: Loading state and empty state are added for better user experience, especially when the internet is slow or there is no data available.
 - **Input Validation**: The search input is considered "free", meaning it admits any characters since there are no specific validation requirements mentioned. This assumes the user can search by any keyword.
 
+### Folder Structure
+
+Usually, I use atomic design for folder structure when the project has a several reusable components. However, for this case, I didn’t follow this approach because it is a small project.
+
 ## Installation
 
 1. Clone the repository:
@@ -69,7 +73,6 @@ Product Viewer App is a React-based application that displays a list of products
 - `fetchProducts(limit: number, skip: number)` - Fetches a list of products, where limit specifies the number of products to retrieve and skip specifies the number of products to skip. This supports loading products in batches for efficient data handling.
 - `fetchCategories()` - Fetches a list of product categories.
 
-
 ## Testing
 
 - **Performance Testing**: Throttling network speed (e.g., slow 3G) should be tested to ensure the loading indicators and performance are handled correctly. This is important to simulate real-world conditions and ensure a smooth user experience even under poor network conditions.
@@ -97,4 +100,3 @@ The application is optimized for performance, with lazy loading of products and 
 ## Repository
 
 - [GitHub Repository](https://github.com/MartaLourido/product-viewer-app)
-
