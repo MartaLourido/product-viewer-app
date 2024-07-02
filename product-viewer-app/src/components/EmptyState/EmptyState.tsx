@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import { emptyStateStyles } from "./EmptyState.styles";
 
 interface EmptyStateProps {
   message: string;
@@ -12,18 +13,8 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   icon: IconComponent = InfoIcon,
 }) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        textAlign: "center",
-        color: "#1976d2",
-      }}
-    >
-      <IconComponent data-testid="InfoIcon" sx={{ fontSize: 80, mb: 2 }} />
+    <Box sx={emptyStateStyles.container}>
+      <IconComponent data-testid="InfoIcon" sx={emptyStateStyles.icon} />
       <Typography variant="h4">{message}</Typography>
     </Box>
   );

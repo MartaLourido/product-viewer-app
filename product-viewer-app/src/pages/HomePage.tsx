@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  AppBar,
-  Toolbar,
-  Typography,
-  useMediaQuery,
-  useTheme,
-  Box,
-  CircularProgress,
-} from "@mui/material";
+import { Typography, CircularProgress } from "@mui/material";
 import ProductList from "../components/ProductList/ProductList";
 import SearchBar from "../components/SearchBar/SearchBar";
 import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
@@ -17,6 +8,14 @@ import useProducts from "../hooks/useProducts";
 import { Product } from "../types/Product";
 import { Category } from "../types/Category";
 import InventoryIcon from "@mui/icons-material/Inventory";
+import {
+  StyledContainer,
+  StyledAppBar,
+  StyledToolbar,
+  StyledBox,
+  FilterBox,
+  ContentBox,
+} from "./HomePage.styles";
 
 const HomePage: React.FC = () => {
   const { products, error, loading, loadMore, hasMore } = useProducts(20);
@@ -74,62 +73,17 @@ const HomePage: React.FC = () => {
     );
   });
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        py: 4,
-        px: { xs: 2, sm: 3, md: 5 },
-        maxWidth: "100%",
-        justifyContent: "flex-start",
-        alignItems: "center",
-      }}
-    >
-      <AppBar
-        position="static"
-        sx={{
-          mb: 4,
-          background: "linear-gradient(to right, #1976d2, #42a5f5)",
-          boxShadow: 3,
-        }}
-      >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: isMobile ? "center" : "space-between",
-            flexWrap: "wrap",
-            flexDirection: isMobile ? "column" : "row",
-            gap: isMobile ? 2 : 0,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              flex: isMobile ? "none" : 1,
-            }}
-          >
+    <StyledContainer maxWidth={false}>
+      <StyledAppBar position="static">
+        <StyledToolbar>
+          <StyledBox>
             <InventoryIcon />
             <Typography variant="h6" noWrap sx={{ fontWeight: "bold" }}>
               Product Viewer App
             </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              alignItems: "center",
-              gap: 2,
-              width: isMobile ? "100%" : "auto",
-            }}
-          >
+          </StyledBox>
+          <FilterBox>
             <SearchBar onSearch={handleSearch} />
             {categoriesLoading ? (
               <CircularProgress size={24} />
@@ -141,20 +95,10 @@ const HomePage: React.FC = () => {
                 onChange={handleCategoryChange}
               />
             )}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box
-        sx={{
-          flex: "1 1 auto",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-          maxWidth: "100%",
-        }}
-      >
+          </FilterBox>
+        </StyledToolbar>
+      </StyledAppBar>
+      <ContentBox>
         <ProductList
           products={filteredProducts}
           error={error}
@@ -162,8 +106,8 @@ const HomePage: React.FC = () => {
           loadMore={loadMore}
           hasMore={hasMore}
         />
-      </Box>
-    </Container>
+      </ContentBox>
+    </StyledContainer>
   );
 };
 

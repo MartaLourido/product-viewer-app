@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import { Product } from "../../types/Product";
 import EmptyState from "../EmptyState/EmptyState";
 import InfoIcon from "@mui/icons-material/Info";
+import { productListStyles } from "./ProductList.styles";
 
 const ProductList: React.FC<{
   products: Product[];
@@ -29,25 +30,9 @@ const ProductList: React.FC<{
   );
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        minHeight: "100vh",
-      }}
-    >
+    <Box sx={productListStyles.container}>
       {loading && products.length === 0 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100vh",
-          }}
-        >
+        <Box sx={productListStyles.loadingContainer}>
           <CircularProgress />
         </Box>
       )}
@@ -63,7 +48,7 @@ const ProductList: React.FC<{
         container
         spacing={4}
         justifyContent="center"
-        sx={{ maxWidth: "100%", py: 4 }}
+        sx={productListStyles.gridContainer}
       >
         {products.map((product: Product, index: number) => (
           <Grid
@@ -80,7 +65,7 @@ const ProductList: React.FC<{
           </Grid>
         ))}
         {loading && products.length > 0 && (
-          <Grid item xs={12} sx={{ textAlign: "center", py: 4 }}>
+          <Grid item xs={12} sx={productListStyles.loadingIndicator}>
             <CircularProgress />
           </Grid>
         )}
