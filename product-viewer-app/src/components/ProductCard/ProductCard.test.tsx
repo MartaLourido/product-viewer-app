@@ -1,42 +1,46 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import ProductCard from './ProductCard';
-import { Product } from '../../types/Product';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import ProductCard from "./ProductCard";
+import { Product } from "../../types/Product";
+
+jest.mock("react-lazy-load-image-component", () => ({
+  LazyLoadImage: (props: any) => <img {...props} />,
+}));
 
 const mockProduct: Product = {
   id: 1,
-  title: 'Test Product',
-  description: 'This is a test product.',
-  category: 'test-category',
+  title: "Test Product",
+  description: "This is a test product.",
+  category: "test-category",
   price: 19.99,
-  brand: 'Test Brand',
-  thumbnail: 'https://test.placeholder.com/150'
+  brand: "Test Brand",
+  thumbnail: "https://test.placeholder.com/150",
 };
 
-describe('ProductCard', () => {
-  it('should display product title', () => {
+describe("ProductCard", () => {
+  it("should display product title", () => {
     render(<ProductCard product={mockProduct} />);
-    expect(screen.getByText('Test Product')).toBeInTheDocument();
+    expect(screen.getByText("Test Product")).toBeInTheDocument();
   });
 
-  it('should display product description', () => {
+  it("should display product description", () => {
     render(<ProductCard product={mockProduct} />);
-    expect(screen.getByText('This is a test product.')).toBeInTheDocument();
+    expect(screen.getByText("This is a test product.")).toBeInTheDocument();
   });
 
-  it('should display product category', () => {
+  it("should display product category", () => {
     render(<ProductCard product={mockProduct} />);
-    expect(screen.getByText('test-category')).toBeInTheDocument();
+    expect(screen.getByText("test-category")).toBeInTheDocument();
   });
 
-  it('should display product price', () => {
+  it("should display product price", () => {
     render(<ProductCard product={mockProduct} />);
-    expect(screen.getByText('19.99 USD')).toBeInTheDocument();
+    expect(screen.getByText("19.99 USD")).toBeInTheDocument();
   });
 
-  it('should display product brand', () => {
+  it("should display product brand", () => {
     render(<ProductCard product={mockProduct} />);
-    expect(screen.getByText('Test Brand')).toBeInTheDocument();
+    expect(screen.getByText("Test Brand")).toBeInTheDocument();
   });
 });
