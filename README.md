@@ -71,7 +71,7 @@ Product Viewer App is a React-based application that displays a list of products
 
 ## Testing
 
-- **Performance Testing**: Throttling network speed (e.g., slow 3G) should be tested to ensure the loading indicators and performance are handled correctly. This is important to simulate real-world conditions and ensure a smooth user experience even under poor network conditions.
+- **Performance Testing**: Throttling network speed (e.g., slow 3G) should be tested to ensure the loading indicators and performance are handled correctly.
 
 ### Unit Tests
 
@@ -86,7 +86,7 @@ Unit tests are written using Jest and React Testing Library. Tests are written t
 
 ## Performance
 
-The application is optimized for performance, with lazy loading of products and chunked requests to minimize the load time and enhance the user experience.
+The application is optimized for performance, with lazy loading of products to minimize the load time and enhance the user experience.
 
 ## Folder Structure
 
@@ -100,6 +100,7 @@ Usually, I use atomic design for folder structure when the project has several r
 
 - [DummyJSON API Documentation](https://dummyjson.com/docs/products)
 - [Material UI Documentation](https://mui.com/)
+- [React Documentation](https://react.dev/)
 
 ## Repository
 
