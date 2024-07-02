@@ -1,6 +1,7 @@
 import React from "react";
-import { Search, StyledInputBase, SearchIconWrapper } from "./SearchBar.styles";
 import SearchIcon from "@mui/icons-material/Search";
+
+import { Search, StyledInputBase, SearchIconWrapper } from "./SearchBar.styles";
 
 const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({
   onSearch,

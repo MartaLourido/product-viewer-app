@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import { Typography, CircularProgress } from "@mui/material";
+
 import ProductList from "../components/ProductList/ProductList";
 import SearchBar from "../components/SearchBar/SearchBar";
 import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
@@ -7,7 +9,6 @@ import { fetchCategories } from "../services/productService";
 import useProducts from "../hooks/useProducts";
 import { Product } from "../types/Product";
 import { Category } from "../types/Category";
-import InventoryIcon from "@mui/icons-material/Inventory";
 import {
   StyledContainer,
   StyledAppBar,

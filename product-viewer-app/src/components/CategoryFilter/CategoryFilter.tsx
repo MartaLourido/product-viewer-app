@@ -1,5 +1,6 @@
 import React from "react";
 import { Autocomplete, TextField } from "@mui/material";
+
 import { Category } from "types/Category";
 
 interface CategoryFilterProps {

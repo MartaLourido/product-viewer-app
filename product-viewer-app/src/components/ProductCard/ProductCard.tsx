@@ -2,9 +2,10 @@ import React from "react";
 import { Card, CardContent, Typography, Box, Chip } from "@mui/material";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
 import { Product } from "../../types/Product";
-import { productCardStyles } from "./ProductCard.styles";
 import { categoryColors } from "../../styles/categoryColors";
+import { productCardStyles } from "./ProductCard.styles";
 
 interface ProductCardProps {
   product: Product;

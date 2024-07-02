@@ -1,9 +1,10 @@
 import React, { useRef, useCallback } from "react";
 import { Grid, Typography, Box, CircularProgress } from "@mui/material";
-import ProductCard from "../ProductCard/ProductCard";
-import { Product } from "../../types/Product";
-import EmptyState from "../EmptyState/EmptyState";
 import InfoIcon from "@mui/icons-material/Info";
+
+import ProductCard from "../ProductCard/ProductCard";
+import EmptyState from "../EmptyState/EmptyState";
+import { Product } from "../../types/Product";
 import { productListStyles } from "./ProductList.styles";
 
 const ProductList: React.FC<{
