@@ -1,8 +1,10 @@
 import React from "react";
 import { Card, CardContent, Typography, Box, Chip } from "@mui/material";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { Product } from "../../types/Product";
 import { productCardStyles } from "./ProductCard.styles";
-import { categoryColors } from "../../styles/categoryColors"; // Import the categoryColors
+import { categoryColors } from "../../styles/categoryColors";
 
 interface ProductCardProps {
   product: Product;
@@ -14,11 +16,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Card sx={productCardStyles.card}>
       <Box sx={productCardStyles.imageContainer}>
-        <Box
-          component="img"
-          sx={productCardStyles.image}
-          src={product.thumbnail}
+        <LazyLoadImage
           alt={product.title}
+          effect="blur"
+          src={product.thumbnail}
+          style={productCardStyles.image}
         />
       </Box>
       <CardContent>
