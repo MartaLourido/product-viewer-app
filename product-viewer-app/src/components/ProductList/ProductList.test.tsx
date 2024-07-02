@@ -3,6 +3,10 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import ProductList from "./ProductList";
 import { Product } from "../../types/Product";
 
+jest.mock('react-lazy-load-image-component', () => ({
+  LazyLoadImage: (props: any) => <img {...props} />,
+}));
+
 describe("ProductList", () => {
   const mockProducts: Product[] = Array.from({ length: 20 }, (_, i) => ({
     id: i + 1,
