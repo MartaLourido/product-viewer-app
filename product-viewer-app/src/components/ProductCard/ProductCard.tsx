@@ -44,11 +44,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       }}
     >
       <Box
-        component="img"
-        sx={{ height: 200, objectFit: "cover" }}
-        src={product.thumbnail}
-        alt={product.title}
-      />
+        sx={{
+          height: 200,
+          overflow: "hidden",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          component="img"
+          sx={{ height: "100%", width: "auto" }}
+          src={product.thumbnail}
+          alt={product.title}
+        />
+      </Box>
       <CardContent>
         <Chip
           label={product.category}
